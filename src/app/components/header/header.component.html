@@ -1,0 +1,21 @@
+<mat-toolbar class="toolbar">
+    <span [matMenuTriggerFor]="categories">Products</span>
+    <mat-menu #categories yPosition="below">
+        <a routerLink="/" mat-menu-item>Category 1</a>
+        <a routerLink="/" mat-menu-item>Category 2</a>
+        <a routerLink="/" mat-menu-item>Category 3</a>
+    </mat-menu>
+    <span  [matMenuTriggerFor]="minicart">
+        <span class="material-icons">
+            shopping_cart
+        </span>
+    </span>
+    <mat-menu #minicart yPosition="below">
+        <app-product-minicart  *ngFor="let product of products" [product]="product"></app-product-minicart>
+        <a routerLink="/cart">
+            go to cart  
+        </a>
+    </mat-menu>
+    <a routerLink="/my-orders">My Orders</a>
+</mat-toolbar>
+

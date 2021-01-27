@@ -1,0 +1,9 @@
+<div class="product-item">
+    <div class="image-wrapper">
+        <img src="{{ product.image}}">
+    </div>
+    <p>{{product.name}}</p>
+    <span class="material-icons" (click)="cartService.removeFromCart(product.id)">
+        close
+    </span>
+</div>

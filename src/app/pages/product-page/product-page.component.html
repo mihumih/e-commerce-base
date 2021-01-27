@@ -1,0 +1,17 @@
+<div class="root">
+  <mat-card class="product">
+    <div class="image-wrapper">
+      <img mat-card-image src="{{product.image}}"/>
+    </div>
+    <mat-card-content>
+      <span>SKU: {{product.SKU}}</span>
+      <h3>Name: {{product.name}}</h3>
+      <p>Description: {{product.description}}</p>
+      <span>Price: {{product.price}} Lei</span>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="cartService.addToCart(product)">Add to cart</button>
+    </mat-card-actions>
+  </mat-card>
+  
+</div>

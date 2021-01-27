@@ -1,0 +1,8 @@
+<div class="product-list" >
+   <app-product class="product-item" *ngFor="let product of products" [product]="product"></app-product>
+</div>
+<mat-paginator [length]="productService.totalProducts"
+              [pageSize]="20"
+              [pageSizeOptions]="[20]"
+              (page)="getProducts($event)">
+</mat-paginator>
