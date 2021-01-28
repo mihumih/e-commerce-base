@@ -6,3 +6,8 @@ export interface Product {
     description: string;
     price: number;
 }
+export interface Order {
+    date: Date,
+    numberOfProducts: number,
+    orderTotal: number,
+}

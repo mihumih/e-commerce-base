@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../services/order.service';
+import { Order } from '../../types'
 
 @Component({
   selector: 'app-my-orders-page',
@@ -7,16 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyOrdersPageComponent implements OnInit {
   displayedColumns: string[] = [ 'date', 'numberOfProducts', 'orderTotal'];
-  orders = [];
-  constructor() { }
+  orders: Order[] = [];
+  constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
-    const prevOrders = JSON.parse(localStorage.getItem("orders")) || [];
-
-    this.orders = prevOrders.map(order => ({
-      date: new Date(order.date),
-      numberOfProducts: order.products.length,
-      orderTotal: order.products.reduce((sum, product) => sum + product.price, 0),
-    }));
+   this.orders = this.orderService.GetAllOrders(); 
   }
 }

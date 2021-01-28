@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { FormControl } from '@angular/forms'
+import { OrderService } from '../../services/order.service'
 
 
 @Component({
@@ -11,22 +12,15 @@ import { FormControl } from '@angular/forms'
 export class CartPageComponent implements OnInit {
   displayedColumns: string[] = [ 'name', 'SKU', 'price'];
   shippingAddress = new FormControl('');
+ 
 
-  constructor(public cartService: CartService) { }
+  constructor(public cartService: CartService, private orderService: OrderService) { }
 
   ngOnInit(): void {
   }
   
   handleSubmit(): void {
-    const prevOrders = JSON.parse(localStorage.getItem("orders")) || [];
-    const newOrder = {
-      products: this.cartService.products$.value,
-      shippingAddress: this.shippingAddress.value,
-      date: new Date()
-    }
-
-    localStorage.setItem("orders", JSON.stringify([ ...prevOrders, newOrder ]))
-
+    this.orderService.SaveOrder(this.cartService.products$.value, this.shippingAddress.value);
     this.cartService.clearCart();
 
     alert("Your order was summitted succesfully!");
