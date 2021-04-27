@@ -5,6 +5,7 @@ import { Order } from '../types';
   providedIn: 'root'
 })
 export class OrderService {
+  order: any;
 
   constructor() { }
 
